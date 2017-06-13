@@ -4,11 +4,25 @@ A ConfigMap is created from a directory containing multiple property files.
 Then a Pod is created that references that ConfigMap as a VolumeMount
 
 Here are the steps to recreate
-# create configmap
+# Busybox configmap example
+## create configmap
 oc create configmap test-configmap --from-file=properties/
 
-# delete and pod if needed
+## delete and create pod
 oc delete -f config-map-pod.yml; oc create -f config-map-pod.yml
 
-# look at logs when pod has exited
+## look at logs when pod has exited
+oc logs dapi-test-pod
+
+# httpd configmap example
+## create configmap
+oc create configmap special-config --from-file=httpdfiles/
+
+## delete pod
+oc delete -f httpd-pod.yml
+
+## create pod
+oc create -f httpd-pod.yml
+
+## look at logs when pod has exited
 oc logs dapi-test-pod
