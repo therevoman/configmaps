@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dapi-test-pod
+spec:
+  containers:
+    - name: test-container
+      image: docker.io/busybox
+      command: [ "/bin/sh", "-c", "echo ls; ls -al /tmp/myconfig; echo cat; cat /tmp/myconfig/*" ]
+      volumeMounts:
+      - name: config-volume
+        mountPath: /tmp/myconfig
+  volumes:
+    - name: config-volume
+      configMap:
+        name: environment-config
+  restartPolicy: Never
