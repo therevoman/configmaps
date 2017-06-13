@@ -7,11 +7,8 @@ Here are the steps to recreate
 # create configmap
 oc create configmap test-configmap --from-file=properties/
 
-# delete pod if needed
-oc delete -f config-map-pod.yml
+# delete and pod if needed
+oc delete -f config-map-pod.yml; oc create -f config-map-pod.yml
 
-# create pod
-oc create -f config-map-pod.yml
-
-# look at logs
+# look at logs when pod has exited
 oc logs dapi-test-pod

@@ -6,7 +6,7 @@ spec:
   containers:
     - name: test-container
       image: docker.io/busybox
-      command: [ "/bin/sh", "-c", "echo ls; ls -al /tmp/myconfig; echo cat; cat /tmp/myconfig/*" ]
+      command: [ "/bin/sh", "-c", "echo \"ls /tmp/myconfig\"; ls -al /tmp/myconfig; echo \" \";echo \"cat files in /tmp/myconfig\"; for f in /tmp/myconfig/*; do echo \"Contents of file $f \"; cat /tmp/myconfig/*; done" ]
       volumeMounts:
       - name: config-volume
         mountPath: /tmp/myconfig
